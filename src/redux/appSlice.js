@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {register} from './operations';
+import { signup, signin, logout, refresh, fetchUsers } from "./operations";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -28,14 +28,51 @@ const appSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(register.pending, handlePending)
-      .addCase(register.fulfilled, (state, action) => {
-        console.log(action);
+      .addCase(signup.pending, handlePending)
+      .addCase(signup.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        // state.contacts = [...action.payload];
+        state.users.push({ ...action.payload });
       })
-      .addCase(register.rejected, handleRejected);
+      .addCase(signup.rejected, handleRejected)
+
+      .addCase(signin.pending, handlePending)
+      .addCase(signin.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.currentUser = { ...action.payload };
+        state.isLoggedIn = true;
+      })
+      .addCase(signin.rejected, handleRejected)
+
+      .addCase(logout.pending, handlePending)
+      .addCase(logout.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.currentUser = action.payload;
+        state.isLoggedIn = false;
+      })
+      .addCase(logout.rejected, handleRejected)
+
+      .addCase(refresh.pending, handlePending)
+      .addCase(refresh.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        action.payload === null
+          ? (state.currentUser = null)
+          : (state.currentUser = { ...action.payload });
+        action.payload === null
+          ? (state.isLoggedIn = false)
+          : (state.isLoggedIn = true);
+      })
+
+      .addCase(fetchUsers.pending, handlePending)
+      .addCase(fetchUsers.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.users = [...action.payload];
+      })
+      .addCase(fetchUsers.rejected, handleRejected);
   },
 });
 

@@ -22,7 +22,7 @@
   font-weight: 700;
 }
 .menu {
-  display: flex;  
+  display: flex;
   gap: 16px;
 }
 .menuItem {
@@ -38,4 +38,28 @@
   width: 40px;
   height: 40px;
   fill: #fff;
+}
+.tabList {
+  width: 100%;
+  display: flex;
+}
+.tabBtn {
+  width: 50%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+.activeTab {
+ border: 1px solid rgba(0, 0, 0, 0.3); 
+ border-bottom: none;
+ border-top-left-radius: 12px;
+ border-top-right-radius: 12px;
+}
+.tabContent {
+  height: 480px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-top: none;
+  border-bottom-left-radius: 12px;
+ border-bottom-right-radius: 12px;
 }
