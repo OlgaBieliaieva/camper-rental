@@ -89,4 +89,15 @@ export const fetchUsers = createAsyncThunk(
   }
 );
 
+export const fetchCampers = createAsyncThunk(
+  'appState/fetchCampers',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get('/advert');
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
   

@@ -1,14 +1,12 @@
 import { useDispatch } from "react-redux";
-import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { signup } from "../../redux/operations";
 
 // MUI
 import {
   Avatar,
-  Button,
   CssBaseline,
-  TextField,
   Box,
   Grid,
   Typography,

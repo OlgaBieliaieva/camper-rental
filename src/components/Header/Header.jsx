@@ -30,7 +30,7 @@ const content = [
   },
 ];
 
-export default function Header() {
+export default function Header({cls}) {
   const { ref, onOpen, onClose } = useModal();
   const { currentItem, changeItem } = useTabs(0, content);
   const { user } = useAuth();
@@ -49,7 +49,7 @@ export default function Header() {
   return (
     <>
       <header>
-        <div className={styles.headerContainer}>
+        <div className={`${styles.headerContainer} ${styles[cls]}`}>
           <div className={styles.headerWrapper}>
             <img src={logo} alt="logo" />
             <div className={styles.contactWrapper}>
@@ -79,7 +79,7 @@ export default function Header() {
                       ? () =>
                           Confirm.show(
                             "Вихід з акаунту",
-                            "Ви точно бажаєте вийти з облікового запису?",
+                            "Ви дійсно бажаєте вийти з облікового запису?",
                             "Так",
                             "Ні",
                             function okCb() {

@@ -1,0 +1,47 @@
+.pageContainer {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+}
+.mainContent {
+  width: 100%;
+  height: calc(100% - 100px);
+}
+.contentWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+.sideBar {
+  width: 100%;
+  @media screen and (min-width: 768px) {
+    width: 200px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 350px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 500px;
+  }
+}
+.contentSpace {
+  width: 100%;
+  @media screen and (min-width: 768px) {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    width: calc(100% - 200px - 16px);
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+  @media screen and (min-width: 1024px) {
+    width: calc(100% - 350px - 16px);
+  }
+  @media screen and (min-width: 1280px) {
+    width: calc(100% - 500px - 16px);
+  }
+}
