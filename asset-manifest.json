@@ -1,27 +1,27 @@
 {
   "files": {
     "main.css": "/camper-rental/static/css/main.5fef5bc0.css",
-    "main.js": "/camper-rental/static/js/main.16612cfb.js",
+    "main.js": "/camper-rental/static/js/main.a6f8f8d7.js",
     "static/css/167.edbb5b83.chunk.css": "/camper-rental/static/css/167.edbb5b83.chunk.css",
     "static/js/167.2932a906.chunk.js": "/camper-rental/static/js/167.2932a906.chunk.js",
     "static/css/760.e32576ef.chunk.css": "/camper-rental/static/css/760.e32576ef.chunk.css",
-    "static/js/760.cf3589d5.chunk.js": "/camper-rental/static/js/760.cf3589d5.chunk.js",
+    "static/js/760.51f9a59d.chunk.js": "/camper-rental/static/js/760.51f9a59d.chunk.js",
     "static/css/426.31d6cfe0.chunk.css": "/camper-rental/static/css/426.31d6cfe0.chunk.css",
     "static/js/426.0d18f73d.chunk.js": "/camper-rental/static/js/426.0d18f73d.chunk.js",
     "static/js/556.2bf15925.chunk.js": "/camper-rental/static/js/556.2bf15925.chunk.js",
     "static/media/hero.jpg": "/camper-rental/static/media/hero.1e0fd17fe2f90275d826.jpg",
     "index.html": "/camper-rental/index.html",
     "main.5fef5bc0.css.map": "/camper-rental/static/css/main.5fef5bc0.css.map",
-    "main.16612cfb.js.map": "/camper-rental/static/js/main.16612cfb.js.map",
+    "main.a6f8f8d7.js.map": "/camper-rental/static/js/main.a6f8f8d7.js.map",
     "167.edbb5b83.chunk.css.map": "/camper-rental/static/css/167.edbb5b83.chunk.css.map",
     "167.2932a906.chunk.js.map": "/camper-rental/static/js/167.2932a906.chunk.js.map",
     "760.e32576ef.chunk.css.map": "/camper-rental/static/css/760.e32576ef.chunk.css.map",
-    "760.cf3589d5.chunk.js.map": "/camper-rental/static/js/760.cf3589d5.chunk.js.map",
+    "760.51f9a59d.chunk.js.map": "/camper-rental/static/js/760.51f9a59d.chunk.js.map",
     "426.0d18f73d.chunk.js.map": "/camper-rental/static/js/426.0d18f73d.chunk.js.map",
     "556.2bf15925.chunk.js.map": "/camper-rental/static/js/556.2bf15925.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5fef5bc0.css",
-    "static/js/main.16612cfb.js"
+    "static/js/main.a6f8f8d7.js"
   ]
 }
