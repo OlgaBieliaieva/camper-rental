@@ -1,4 +1,7 @@
+import { useDispatch, useSelector } from "react-redux";
 import useModal from "../../hooks/useModal";
+import { updateUser } from "../../redux/operations";
+import { selectCurrentUser } from "../../redux/selectors";
 import Modal from "../Modal/Modal";
 import Chip from "../Chip/Chip";
 import HeartIcon from "../Icons/HeartIcon";
@@ -45,8 +48,22 @@ const details = [
   },
 ];
 
-export default function ProductCard({ product, fav = [] }) {
+export default function ProductCard({ product }) {
   const { ref, onOpen, onClose } = useModal();
+  const user = useSelector(selectCurrentUser);
+  const dispatch = useDispatch();
+
+  function toggleFav(id) {    
+    let fav = [...user.favorites];
+    if (user.favorites.includes(id)) {
+      const index = user.favorites.findIndex((i) => i === id);
+      fav.splice(index, 1);
+      dispatch(updateUser({ ...user, favorites: [...fav]}));
+    } else {      
+      dispatch(updateUser({ ...user, favorites: [...user.favorites, id] }));
+    }
+  }
+
   return (
     <div className={styles.cardContainer}>
       <div className={styles.imgWrapper}>
@@ -62,13 +79,16 @@ export default function ProductCard({ product, fav = [] }) {
             <p>{product.name}</p>
             <div className={styles.wrapper}>
               <p>&euro;{product.price}.00</p>
-              <HeartIcon
-                className={`${
-                  fav.length > 0 && fav.includes(product.id)
-                    ? styles.fav
-                    : styles.notFav
-                }`}
-              />
+              <button type="button" onClick={() => toggleFav(product.id)}>
+                <HeartIcon
+                  className={`${
+                    user?.favorites?.length > 0 &&
+                    user?.favorites?.includes(product.id)
+                      ? styles.fav
+                      : styles.notFav
+                  }`}
+                />
+              </button>
             </div>
           </div>
           <div className={styles.subtitleRow}>

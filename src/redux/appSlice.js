@@ -1,5 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { signup, signin, logout, refresh, fetchUsers, fetchCampers } from "./operations";
+import {
+  signup,
+  signin,
+  logout,
+  refresh,
+  updateUser,
+  fetchUsers,
+  fetchCampers,
+} from "./operations";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -66,6 +74,19 @@ const appSlice = createSlice({
           : (state.isLoggedIn = true);
       })
 
+      .addCase(updateUser.pending, handlePending)
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        const index = state.users.findIndex(
+          (user) => user.id === action.payload.id
+        );
+        state.users.splice(index, 1, {...action.payload});
+        state.currentUser = { ...action.payload };
+        state.isLoggedIn = true;
+      })
+      .addCase(updateUser.rejected, handleRejected)
+
       .addCase(fetchUsers.pending, handlePending)
       .addCase(fetchUsers.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -73,7 +94,7 @@ const appSlice = createSlice({
         state.users = [...action.payload];
       })
       .addCase(fetchUsers.rejected, handleRejected)
-      
+
       .addCase(fetchCampers.pending, handlePending)
       .addCase(fetchCampers.fulfilled, (state, action) => {
         state.isLoading = false;

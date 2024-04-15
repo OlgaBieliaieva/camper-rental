@@ -8,13 +8,12 @@ import styles from "./Catalog.module.css";
 
 export default function Catalog() {
   const campers = useSelector(selectCampers);
-  const user = useSelector(selectCurrentUser)
+  const user = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
-  console.log(user);
 
   useEffect(() => {
     dispatch(fetchCampers());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={styles.pageContainer}>
@@ -23,7 +22,7 @@ export default function Catalog() {
         <div className={styles.contentWrapper}>
           <div className={styles.sideBar}></div>
           <div className={styles.contentSpace}>
-            <ProductList campers={campers} fav={user?.favorites}/>
+            <ProductList campers={campers} fav={user?.favorites} />
           </div>
         </div>
       </main>

@@ -1,17 +1,17 @@
-import axios from 'axios';
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { Notify } from 'notiflix';
+import axios from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { Notify } from "notiflix";
 
-axios.defaults.baseURL = 'https://6618f1089a41b1b3dfbe61ce.mockapi.io/api/';
+axios.defaults.baseURL = "https://6618f1089a41b1b3dfbe61ce.mockapi.io/api/";
 
 export const signup = createAsyncThunk(
-  'appState/signup',
+  "appState/signup",
   async (user, thunkAPI) => {
     try {
-      const response = await axios.post('/users', { ...user });
+      const response = await axios.post("/users", { ...user });
       if (response.status === 200) {
-      Notify.success({ message: 'Вітаємо з успішною реєстрацією' })
-      return response.data;
+        Notify.success({ message: "Вітаємо з успішною реєстрацією" });
+        return response.data;
       }
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -20,21 +20,21 @@ export const signup = createAsyncThunk(
 );
 
 export const signin = createAsyncThunk(
-  'appState/signin',
-  async (credentials, thunkAPI) => {    
+  "appState/signin",
+  async (credentials, thunkAPI) => {
     try {
-      const users = await axios.get('/users');
+      const users = await axios.get("/users");
       if (users.status === 200) {
         const currentUser = users.data.find(
-          user =>
+          (user) =>
             user.email === credentials.email &&
             user.password === credentials.password
         );
         if (currentUser) {
-          localStorage.setItem('user', currentUser.id);
+          localStorage.setItem("user", currentUser.id);
           return currentUser;
         } else {
-          Notify.failure({ message: 'Не вірний логін або пароль' });
+          Notify.failure({ message: "Не вірний логін або пароль" });
         }
       }
     } catch (e) {
@@ -44,7 +44,7 @@ export const signin = createAsyncThunk(
 );
 
 export const logout = createAsyncThunk(
-  'appState/logout',
+  "appState/logout",
   async (_, thunkAPI) => {
     try {
       localStorage.clear();
@@ -56,15 +56,15 @@ export const logout = createAsyncThunk(
 );
 
 export const refresh = createAsyncThunk(
-  'appState/refresh',
+  "appState/refresh",
   async (_, thunkAPI) => {
     try {
-      const users = await axios.get('/users');
-      const userId = JSON.parse(localStorage.getItem('user'));
+      const users = await axios.get("/users");
+      const userId = JSON.parse(localStorage.getItem("user"));
       if (userId) {
         if (users.status === 200) {
           const currentUser = users.data.find(
-            user => user.id === userId.toString()
+            (user) => user.id === userId.toString()
           );
           return currentUser;
         }
@@ -77,11 +77,23 @@ export const refresh = createAsyncThunk(
   }
 );
 
+export const updateUser = createAsyncThunk(
+  "appState/updateUser",
+  async (newUser, thunkAPI) => {
+    try {
+      const response = await axios.put(`/users/${newUser.id}`, { ...newUser });
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
 export const fetchUsers = createAsyncThunk(
-  'appState/fetchUsers',
+  "appState/fetchUsers",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('/users');
+      const response = await axios.get("/users");
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -90,14 +102,13 @@ export const fetchUsers = createAsyncThunk(
 );
 
 export const fetchCampers = createAsyncThunk(
-  'appState/fetchCampers',
+  "appState/fetchCampers",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('/advert');
+      const response = await axios.get("/advert");
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
-  
