@@ -4,6 +4,11 @@ import { Notify } from "notiflix";
 
 axios.defaults.baseURL = "https://6618f1089a41b1b3dfbe61ce.mockapi.io/api/";
 
+const REQUEST_OPTIONS = {
+  page: 1,
+  limit: 4,
+};
+
 export const signup = createAsyncThunk(
   "appState/signup",
   async (user, thunkAPI) => {
@@ -101,11 +106,25 @@ export const fetchUsers = createAsyncThunk(
   }
 );
 
-export const fetchCampers = createAsyncThunk(
-  "appState/fetchCampers",
+export const fetchAllCampers = createAsyncThunk(
+  "appState/fetchAllCampers",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("/advert");
+      const response = await axios.get(`/advert`);
+      return response.data.length;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const fetchCampers = createAsyncThunk(
+  "appState/fetchCampers",
+  async (page, thunkAPI) => {
+    REQUEST_OPTIONS.page = page;
+    const options = new URLSearchParams(REQUEST_OPTIONS);
+    try {
+      const response = await axios.get(`/advert?${options}`);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

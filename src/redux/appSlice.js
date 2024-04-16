@@ -6,6 +6,7 @@ import {
   refresh,
   updateUser,
   fetchUsers,
+  fetchAllCampers,
   fetchCampers,
 } from "./operations";
 
@@ -22,6 +23,7 @@ const appSlice = createSlice({
   name: "appState",
   initialState: {
     campers: [],
+    campersCount: 0,
     users: [],
     filter: "",
     isLoading: false,
@@ -81,7 +83,7 @@ const appSlice = createSlice({
         const index = state.users.findIndex(
           (user) => user.id === action.payload.id
         );
-        state.users.splice(index, 1, {...action.payload});
+        state.users.splice(index, 1, { ...action.payload });
         state.currentUser = { ...action.payload };
         state.isLoggedIn = true;
       })
@@ -94,6 +96,14 @@ const appSlice = createSlice({
         state.users = [...action.payload];
       })
       .addCase(fetchUsers.rejected, handleRejected)
+
+      .addCase(fetchAllCampers.pending, handlePending)
+      .addCase(fetchAllCampers.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.campersCount = action.payload;
+      })
+      .addCase(fetchAllCampers.rejected, handleRejected)
 
       .addCase(fetchCampers.pending, handlePending)
       .addCase(fetchCampers.fulfilled, (state, action) => {
