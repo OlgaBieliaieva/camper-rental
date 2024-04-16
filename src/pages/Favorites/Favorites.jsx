@@ -20,6 +20,7 @@ const pagOpts = {
 
 export default function Favorites() {
   const [page, setPage] = useState(pagOpts.defaultPage);
+  const [campersToshow, setCampersToShow] = useState([]);
   const campers = useSelector(selectAllCampers);
   const user = useSelector(selectCurrentUser);
   const isLoading = useSelector(selectIsLoading);
@@ -30,6 +31,15 @@ export default function Favorites() {
     dispatch(fetchAllCampers());
   }, [page, dispatch]);
 
+  // useEffect(() => {
+  //   const favs = campers.filter((camper) =>
+  //     user?.favorites?.includes(camper.id)
+  //   );
+
+  //   const arr = favs.slice(page*pagOpts.limit-pagOpts.limit, page*pagOpts.limit);
+  //   setCampersToShow([...arr]);
+  // }, [campersToshow, page]);
+
   return isLoading && !error ? (
     <Loader />
   ) : (
@@ -39,16 +49,22 @@ export default function Favorites() {
         <div className={styles.contentWrapper}>
           <div className={styles.sideBar}></div>
           <div className={styles.contentSpace}>
-            <ProductList
-              campers={campers.filter((camper) =>
-                user?.favorites?.includes(camper.id)
-              )}
-            />
-            <Pagination
-              pages={Math.ceil(user?.favorites?.length / pagOpts.limit)}
-              currentPage={page}
-              onPageChange={setPage}
-            />
+            {user?.favorites?.length <= 0 ? (
+              <p>You have no favorite camper</p>
+            ) : (
+              <>
+                <ProductList
+                  campers={campers.filter((camper) =>
+                    user?.favorites?.includes(camper.id)
+                  ).slice(page*pagOpts.limit-pagOpts.limit, page*pagOpts.limit)}
+                />
+                <Pagination
+                  pages={Math.ceil(user?.favorites?.length / pagOpts.limit)}
+                  currentPage={page}
+                  onPageChange={setPage}
+                />
+              </>
+            )}
           </div>
         </div>
       </main>
