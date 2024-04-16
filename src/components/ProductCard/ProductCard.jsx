@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useModal from "../../hooks/useModal";
 import { updateUser } from "../../redux/operations";
 import { selectCurrentUser } from "../../redux/selectors";
 import Modal from "../Modal/Modal";
+import Auth from "../Auth/Auth";
+import ProductDetails from "../ProductDetails/ProductDetails";
 import Chip from "../Chip/Chip";
 import HeartIcon from "../Icons/HeartIcon";
 import StarIcon from "../Icons/StarIcon";
@@ -17,51 +20,55 @@ import styles from "./ProductCard.module.css";
 
 const details = [
   {
-    name: "adults",
-    data: "",
+    name: "adults",    
     icon: <UsersIcon className={styles.detailsIcon} />,
   },
   {
-    name: "transmission",
-    data: "",
+    name: "transmission",    
     icon: <TransmissionIcon className={styles.detailsIcon} />,
   },
   {
-    name: "engine",
-    data: "",
+    name: "engine",   
     icon: <EngineIcon className={styles.detailsIcon} />,
   },
   {
-    name: "kitchen",
-    data: "",
+    name: "kitchen",   
     icon: <KitchenIcon className={styles.detailsIcon} />,
   },
   {
-    name: "beds",
-    data: "",
+    name: "beds",   
     icon: <BedIcon className={styles.detailsIcon} />,
   },
   {
-    name: "airConditioner",
-    data: "",
+    name: "airConditioner",   
     icon: <ACIcon className={styles.detailsIcon} />,
   },
 ];
 
 export default function ProductCard({ product }) {
+  const [showDetails, setShowDetails] = useState(false);
   const { ref, onOpen, onClose } = useModal();
   const user = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
 
-  function toggleFav(id) {    
-    let fav = [...user.favorites];
-    if (user.favorites.includes(id)) {
-      const index = user.favorites.findIndex((i) => i === id);
-      fav.splice(index, 1);
-      dispatch(updateUser({ ...user, favorites: [...fav]}));
-    } else {      
-      dispatch(updateUser({ ...user, favorites: [...user.favorites, id] }));
+  function toggleFav(id) {
+    if (!user) {
+      onOpen();
+    } else {
+      let fav = [...user.favorites];
+      if (user.favorites.includes(id)) {
+        const index = user.favorites.findIndex((i) => i === id);
+        fav.splice(index, 1);
+        dispatch(updateUser({ ...user, favorites: [...fav] }));
+      } else {
+        dispatch(updateUser({ ...user, favorites: [...user.favorites, id] }));
+      }
     }
+  }
+
+  function detailsHandler() {
+    setShowDetails(true);
+    onOpen();
   }
 
   return (
@@ -153,12 +160,20 @@ export default function ProductCard({ product }) {
             }
           })}
         </ul>
-        <button type="button" className={styles.btn} onClick={onOpen}>
+        <button type="button" className={styles.btn} onClick={detailsHandler}>
           Show more
         </button>
       </div>
       <Modal ref={ref} onClose={onClose} onOpen={onOpen}>
-        MODAL
+        {showDetails ? (
+          <ProductDetails
+            product={product}
+            onClose={onClose}
+            showDetailsHandler={setShowDetails}
+          />
+        ) : (
+          <Auth onClose={onClose} />
+        )}
       </Modal>
     </div>
   );

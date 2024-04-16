@@ -1,36 +1,24 @@
 .modal {
-    position: relative;
-    width: 300px;  
-    min-height: 300px;    
-    
-    @media screen and (min-width: 768px) {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  min-width: 300px;
+  max-width: 90%;
+  min-height: 300px;
+  max-height: 90%;
+  overflow: hidden;
+
+  /* @media screen and (min-width: 768px) {
       width: 440px;
     }
     @media screen and (min-width: 1024px) {
       width: 640px;
-    }
-  }
-  .modal::backdrop {
-    background-color: rgba(0, 0, 0, 0.7);
-  }
-  .modal:where(dialog) {
-    border: none;
-    padding: 32px 24px;
-    padding-top: 64px;
-  }
-  .closeBtn {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    top: 16px;
-    right: 16px;
-  }
-  .closeBtn:hover {
-    background-color: #dde1ee;
-  }
+    } */
+}
+.modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.modal:where(dialog) {
+  border: none;
+  padding: 0;
+}

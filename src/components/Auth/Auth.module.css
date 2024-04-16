@@ -1,0 +1,44 @@
+.authWrapper {
+  padding: 32px 24px;
+  padding-top: 56px;
+}
+.closeBtn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  top: 16px;
+  right: 16px;
+}
+.closeBtn:hover {
+  background-color: #dde1ee;
+}
+.tabList {
+  width: 100%;
+  display: flex;
+}
+.tabBtn {
+  width: 50%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+.activeTab {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-bottom: none;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+.tabContent {
+  height: 500px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-top: none;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}

@@ -1,13 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  selectIsLoading,
-  selectError,
-  selectCampers,
-  selectCampersCount,
-} from "../../redux/selectors";
+import { selectCampers, selectCampersCount } from "../../redux/selectors";
 import { fetchAllCampers, fetchCampers } from "../../redux/operations";
-import Loader from "../../components/Loader/Loader";
 import Header from "../../components/Header/Header";
 import ProductList from "../../components/ProductList/ProductList";
 import Pagination from "../../components/Pagination/Pagination";
@@ -22,18 +16,17 @@ export default function Catalog() {
   const [page, setPage] = useState(pagOpts.defaultPage);
   const campers = useSelector(selectCampers);
   const campersCount = useSelector(selectCampersCount);
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchAllCampers());
+  }, [dispatch]);
+
+  useEffect(() => {
     dispatch(fetchCampers(page));
   }, [page, dispatch]);
 
-  return isLoading && !error ? (
-    <Loader />
-  ) : (
+  return (
     <div className={styles.pageContainer}>
       <Header />
       <main className={styles.mainContent}>

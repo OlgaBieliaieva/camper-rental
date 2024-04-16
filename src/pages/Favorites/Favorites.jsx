@@ -19,8 +19,7 @@ const pagOpts = {
 };
 
 export default function Favorites() {
-  const [page, setPage] = useState(pagOpts.defaultPage);
-  const [campersToshow, setCampersToShow] = useState([]);
+  const [page, setPage] = useState(pagOpts.defaultPage);  
   const campers = useSelector(selectAllCampers);
   const user = useSelector(selectCurrentUser);
   const isLoading = useSelector(selectIsLoading);
@@ -31,14 +30,6 @@ export default function Favorites() {
     dispatch(fetchAllCampers());
   }, [page, dispatch]);
 
-  // useEffect(() => {
-  //   const favs = campers.filter((camper) =>
-  //     user?.favorites?.includes(camper.id)
-  //   );
-
-  //   const arr = favs.slice(page*pagOpts.limit-pagOpts.limit, page*pagOpts.limit);
-  //   setCampersToShow([...arr]);
-  // }, [campersToshow, page]);
 
   return isLoading && !error ? (
     <Loader />
