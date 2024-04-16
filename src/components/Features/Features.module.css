@@ -1,20 +1,48 @@
 .featuresContainer {
-    display: flex;
-    gap: 24px;
+  display: flex;
+  gap: 24px;
 }
 .featuresWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 44px;
+  width: 430px;
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
 }
 .chipsList {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 .chipsList .detailsIcon {
-    width: 20px;
-    height: 20px;
-    fill: none;
-  }
+  width: 20px;
+  height: 20px;
+  fill: none;
+}
+.propsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.propsListTitle {
+  font-size: 20px;
+  font-weight: 700;
+}
+hr {
+  width: 100%;
+  height: 1px;
+  color: rgba(16, 24, 40, 0.2);
+}
+.propsList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+.propItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

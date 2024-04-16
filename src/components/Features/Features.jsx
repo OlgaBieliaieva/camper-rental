@@ -8,6 +8,8 @@ import UsersIcon from "../Icons/UsersIcon";
 import CDIcon from "../Icons/CDIcon";
 import HobIcon from "../Icons/HobIcon";
 import RadioIcon from "../Icons/RadioIcon";
+import MicrowaveIcon from "../Icons/MicrowaveIcon";
+import FreezerIcon from "../Icons/FreezerIcon";
 import styles from "./Features.module.css";
 
 const details = [
@@ -32,6 +34,14 @@ const details = [
     icon: <KitchenIcon className={styles.detailsIcon} />,
   },
   {
+    name: "microwave",
+    icon: <MicrowaveIcon className={styles.detailsIcon} />,
+  },
+  {
+    name: "freezer",
+    icon: <FreezerIcon className={styles.detailsIcon} />,
+  },
+  {
     name: "beds",
     icon: <BedIcon className={styles.detailsIcon} />,
   },
@@ -48,6 +58,7 @@ const details = [
     icon: <HobIcon className={styles.detailsIcon} />,
   },
 ];
+const properties = ["form", "length", "width", "height", "tank", "consumption"];
 
 export default function Features({ product }) {
   return (
@@ -60,6 +71,20 @@ export default function Features({ product }) {
             } else if (
               item.name === "airConditioner" &&
               product.details.airConditioner <= 0
+            ) {
+              return "";
+            } else if (item.name === "CD" && product.details.CD <= 0) {
+              return "";
+            } else if (item.name === "radio" && product.details.radio <= 0) {
+              return "";
+            } else if (
+              item.name === "microwave" &&
+              product.details.microwave <= 0
+            ) {
+              return "";
+            } else if (
+              item.name === "freezer" &&
+              product.details.freezer <= 0
             ) {
               return "";
             } else {
@@ -87,7 +112,10 @@ export default function Features({ product }) {
                     ) : (
                       ""
                     )}
-                    {item.name === "kitchen" ? (
+                    {item.name === "kitchen" ||
+                    item.name === "radio" ||
+                    item.name === "microwave" ||
+                    item.name === "freezer" ? (
                       <span style={{ textTransform: "capitalize" }}>
                         {item.name}
                       </span>
@@ -99,13 +127,29 @@ export default function Features({ product }) {
                     ) : (
                       ""
                     )}
+                    {item.name === "CD" ? (
+                      <span style={{ textTransform: "uppercase" }}>cd</span>
+                    ) : (
+                      ""
+                    )}
                   </Chip>
                 </li>
               );
             }
           })}
         </ul>
-        <ul className={styles.propsList}></ul>
+        <div className={styles.propsWrapper}>
+        <p className={styles.propsListTitle}>Vehicle details</p>
+        <hr/>
+        <ul className={styles.propsList}>
+          {properties.map((prop, index) => (
+            <li key={index} className={styles.propItem}>
+              <p>{prop}</p>
+              <p>{product[prop]}</p>
+            </li>
+          ))}
+        </ul>
+        </div>
       </div>
     </div>
   );
