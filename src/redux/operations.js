@@ -111,7 +111,7 @@ export const fetchAllCampers = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(`/advert`);
-      return response.data.length;
+      return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

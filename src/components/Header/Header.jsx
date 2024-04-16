@@ -18,6 +18,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 
 const content = [
   {
@@ -99,6 +100,11 @@ export default function Header({cls}) {
                     <PersonOutlineOutlinedIcon className={styles.headerIcon} />
                   )}
                 </button>
+              </li>
+              <li className={styles.menuItem}>
+                <Link to="/catalog">
+                  <FormatListNumberedIcon className={styles.headerIcon} />
+                </Link>
               </li>
               <li className={styles.menuItem}>
                 <Link to="/">

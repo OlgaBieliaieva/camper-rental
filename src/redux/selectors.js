@@ -1,6 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 export const selectCampers = state => state.appState.campers;
+export const selectAllCampers = state => state.appState.allCampers;
 export const selectCampersCount = state => state.appState.campersCount;
 export const selectUsers = state => state.appState.users;
 export const selectFilter = state => state.appState.filter;

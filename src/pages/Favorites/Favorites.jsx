@@ -3,11 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   selectIsLoading,
   selectError,
-  selectCampers,
-  selectCampersCount,
+  selectAllCampers,
   selectCurrentUser,
 } from "../../redux/selectors";
-import { fetchAllCampers, fetchCampers } from "../../redux/operations";
+import { fetchAllCampers } from "../../redux/operations";
 import Loader from "../../components/Loader/Loader";
 import Header from "../../components/Header/Header";
 import ProductList from "../../components/ProductList/ProductList";
@@ -21,8 +20,7 @@ const pagOpts = {
 
 export default function Favorites() {
   const [page, setPage] = useState(pagOpts.defaultPage);
-  const campers = useSelector(selectCampers);
-  const campersCount = useSelector(selectCampersCount);
+  const campers = useSelector(selectAllCampers);
   const user = useSelector(selectCurrentUser);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
@@ -30,7 +28,6 @@ export default function Favorites() {
 
   useEffect(() => {
     dispatch(fetchAllCampers());
-    dispatch(fetchCampers(page));
   }, [page, dispatch]);
 
   return isLoading && !error ? (
@@ -42,9 +39,13 @@ export default function Favorites() {
         <div className={styles.contentWrapper}>
           <div className={styles.sideBar}></div>
           <div className={styles.contentSpace}>
-            <ProductList campers={campers}/>
+            <ProductList
+              campers={campers.filter((camper) =>
+                user?.favorites?.includes(camper.id)
+              )}
+            />
             <Pagination
-              pages={Math.ceil(campersCount / pagOpts.limit)}
+              pages={Math.ceil(user?.favorites?.length / pagOpts.limit)}
               currentPage={page}
               onPageChange={setPage}
             />

@@ -23,6 +23,7 @@ const appSlice = createSlice({
   name: "appState",
   initialState: {
     campers: [],
+    allCampers: [],
     campersCount: 0,
     users: [],
     filter: "",
@@ -101,7 +102,8 @@ const appSlice = createSlice({
       .addCase(fetchAllCampers.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.campersCount = action.payload;
+        state.allCampers = [...action.payload];
+        state.campersCount = action.payload.length;
       })
       .addCase(fetchAllCampers.rejected, handleRejected)
 
