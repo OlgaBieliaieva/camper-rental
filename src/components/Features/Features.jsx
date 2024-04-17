@@ -1,4 +1,6 @@
 import Chip from "../Chip/Chip";
+import BookingForm from "../BookingForm/BookingForm";
+// icons
 import ACIcon from "../Icons/ACIcon";
 import BedIcon from "../Icons/BedIcon";
 import EngineIcon from "../Icons/EngineIcon";
@@ -10,6 +12,7 @@ import HobIcon from "../Icons/HobIcon";
 import RadioIcon from "../Icons/RadioIcon";
 import MicrowaveIcon from "../Icons/MicrowaveIcon";
 import FreezerIcon from "../Icons/FreezerIcon";
+// 
 import styles from "./Features.module.css";
 
 const details = [
@@ -151,6 +154,7 @@ export default function Features({ product }) {
         </ul>
         </div>
       </div>
+      <BookingForm/>
     </div>
   );
 }

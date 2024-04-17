@@ -1,5 +1,6 @@
 import useTabs from "../../hooks/useTabs";
 import Features from "../Features/Features";
+import Reviews from "../Reviews/Reviews";
 import CloseSharpIcon from "@mui/icons-material/CloseSharp";
 import StarIcon from "../Icons/StarIcon";
 import MapPinIcon from "../Icons/MapPinIcon";
@@ -23,7 +24,7 @@ export default function ProductDetails({
 }) {
   const { currentItem, changeItem } = useTabs(0, content);
   content[0].component = <Features product={product}/>;
-//   content[1].component = <Signup changeItem={changeItem} />;
+  content[1].component = <Reviews reviews={product.reviews} />;
 
   function closeHandler() {
     showDetailsHandler(false);
