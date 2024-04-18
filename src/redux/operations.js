@@ -6,7 +6,7 @@ axios.defaults.baseURL = "https://6618f1089a41b1b3dfbe61ce.mockapi.io/api/";
 
 const REQUEST_OPTIONS = {
   page: 1,
-  limit: 4,
+  limit: 4,  
 };
 
 export const signup = createAsyncThunk(
@@ -108,10 +108,15 @@ export const fetchUsers = createAsyncThunk(
 
 export const fetchAllCampers = createAsyncThunk(
   "appState/fetchAllCampers",
-  async (_, thunkAPI) => {
+  async (filter, thunkAPI) => {
     try {
       const response = await axios.get(`/advert`);
-      return response.data;
+      if(!filter){
+        return response.data;
+      } else {
+        
+      }
+      
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

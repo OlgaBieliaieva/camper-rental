@@ -32,14 +32,14 @@ export default function Header({ cls }) {
 
   return (
     <>
-      <header>
-        <div className={`${styles.headerContainer} ${styles[cls]}`}>
-          <div className={styles.headerWrapper}>
-            <img src={logo} alt="logo" />
-            <div className={styles.contactWrapper}>
-              <PhoneInTalkIcon className={styles.headerIcon} />
-              <a href="tel:+380505000505">+38 (050) 500 05 05</a>
-            </div>
+      <header className={`${styles.headerContainer} ${styles[cls]}`}>
+        <div className={styles.headerWrapper}>
+          <img src={logo} alt="logo" />
+          <div className={styles.contactWrapper}>
+            <PhoneInTalkIcon className={styles.headerIcon} />
+            <a href="tel:+380505000505">+38 (050) 500 05 05</a>
+          </div>
+          <nav>
             <ul className={styles.menu}>
               <li className={styles.menuItem}>
                 <button
@@ -95,9 +95,10 @@ export default function Header({ cls }) {
                 </Link>
               </li>
             </ul>
-          </div>
+          </nav>
         </div>
       </header>
+
       <Modal ref={ref} onClose={onClose} onOpen={onOpen}>
         <Auth onClose={onClose} />
       </Modal>

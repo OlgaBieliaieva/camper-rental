@@ -1,0 +1,120 @@
+.form {
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.filterSectionTitle {
+  font-size: 20px;
+  font-weight: 700px;
+}
+.inputLabel {
+  position: relative;
+  text-transform: capitalize;
+}
+.input {
+  width: 100%;
+  padding: 18px;
+  padding-left: 42px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: #f2f4f7;
+  font-size: 16px;
+}
+.inputLabel .inputIcon {
+  position: absolute;
+  top: 38px;
+  left: 18px;
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: none;
+}
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+.radioLabel {
+  width: 112px;
+  height: 95px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(16, 24, 40, 0.2);
+  border-radius: 10px;
+  text-transform: capitalize;
+  text-align: center;
+}
+.radioLabel .inputIcon {
+  width: 32px;
+  height: 32px;
+  fill: none;
+  stroke: none;
+}
+.radioLabel .typeIcon {
+  width: 40px;
+  height: 40px;
+}
+.active {
+  border-color: #e44848;
+}
+.filterSectionWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+hr {
+  width: 100%;
+  height: 1px;
+  color: rgba(16, 24, 40, 0.2);
+}
+.formGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.checkboxLabel {
+  width: 112px;
+  height: 95px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(16, 24, 40, 0.2);
+  border-radius: 10px;
+  text-transform: capitalize;
+  text-align: center;
+}
+.checkboxLabel .inputIcon {
+  width: 32px;
+  height: 32px;
+  fill: none;
+  stroke: none;
+}
+.checkboxLabel.active {
+  border-color: #e44848;
+}
+.submitBtn {
+  width: fit-content;
+  padding: 16px 60px;
+  border-radius: 200px;
+  background-color: #e44848;
+  color: #ffffff;
+}
+.resetBtn {
+  width: fit-content;
+  padding: 16px 60px;
+  border-radius: 200px;
+  border: 1px solid #e44848;
+  color: #e44848;
+}

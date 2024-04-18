@@ -1,11 +1,19 @@
 .cardContainer {
-  width: fit-content;
+  width: 288px;
   display: flex;
   gap: 24px;
   padding: 24px;
   border: 1px solid rgba(16, 24, 40, 0.2);
   border-radius: 20px;
   font-size: 15px;
+
+  @media screen and (min-width: 768px) {
+    width: 720px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 890px;
+  }
 }
 .imgWrapper {
   width: 290px;
@@ -98,7 +106,7 @@
 .btn {
   width: fit-content;
   padding: 16px 40px;
-  text-align: center;  
+  text-align: center;
   font-weight: 500;
   color: #ffffff;
   background-color: #e44848;
