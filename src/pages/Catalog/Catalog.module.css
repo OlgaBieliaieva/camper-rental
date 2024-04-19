@@ -3,10 +3,10 @@
   background-color: #ffffff;
 }
 .mainContent {
-  width: 100%;  
+  width: 100%;
 }
 .contentWrapper {
-  width: 100%;  
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -39,7 +39,7 @@
     padding-top: 48px;
   }
   @media screen and (min-width: 1280px) {
-    width: calc(100% - 890px - 24px);    
+    width: calc(100% - 890px - 24px);
   }
 }
 .contentSpace {
@@ -57,9 +57,9 @@
     width: 890px;
   }
 }
-.content {  
+.content {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 24px;  
+  gap: 24px;
 }

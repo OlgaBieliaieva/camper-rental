@@ -7,7 +7,6 @@ import {
   updateUser,
   fetchUsers,
   fetchAllCampers,
-  fetchCampers,
 } from "./operations";
 
 const handlePending = (state) => {
@@ -23,10 +22,8 @@ const appSlice = createSlice({
   name: "appState",
   initialState: {
     campers: [],
-    allCampers: [],
-    campersCount: 0,
     users: [],
-    filter: "",
+    filter: {},
     isLoading: false,
     error: null,
     currentUser: null,
@@ -102,18 +99,17 @@ const appSlice = createSlice({
       .addCase(fetchAllCampers.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.allCampers = [...action.payload];
-        state.campersCount = action.payload.length;
-      })
-      .addCase(fetchAllCampers.rejected, handleRejected)
-
-      .addCase(fetchCampers.pending, handlePending)
-      .addCase(fetchCampers.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
         state.campers = [...action.payload];
       })
-      .addCase(fetchCampers.rejected, handleRejected);
+      .addCase(fetchAllCampers.rejected, handleRejected);
+
+    // .addCase(fetchCampers.pending, handlePending)
+    // .addCase(fetchCampers.fulfilled, (state, action) => {
+    //   state.isLoading = false;
+    //   state.error = null;
+    //   state.campers = [...action.payload];
+    // })
+    // .addCase(fetchCampers.rejected, handleRejected)
   },
 });
 

@@ -1,5 +1,6 @@
-import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { filter } from "../../redux/appSlice";
 // Icons
 import MapPinIcon from "../Icons/MapPinIcon";
 import TransmissionIcon from "../Icons/TransmissionIcon";
@@ -48,29 +49,40 @@ const equipment = [
   },
 ];
 
-const validationSchema = Yup.object().shape({
-  email: Yup.string().email().required("Введіть адресу електронної пошти"),
-  password: Yup.string().min(6).max(10).required("Введіть пароль"),
-});
-
 const initialValues = {
   location: "",
   transmission: "",
-  type: "",
+  form: "",
   equipment: [],
 };
 
-export default function Filters({ filterCampers }) {
+export default function Filters({ createSearchParams, onPageChange }) {
+  const dispatch = useDispatch();
+
   function handleSubmit(values) {
+    const params = {};
+    for (const key in values) {
+      if (values[key].length > 0) {
+        key !== "equipment"
+          ? (params[key] = values[key])
+          : (params.equipment = [...values.equipment]);
+      }
+    }
     console.log(values);
-    filterCampers(values);
+    console.log(params);
+    createSearchParams({ ...params });
+    dispatch(filter({ ...params }));
+    onPageChange(1);
   }
+
+  function filterReset() {
+    createSearchParams({});
+    dispatch(filter({}));
+    onPageChange(1);
+  }
+
   return (
-    <Formik
-      initialValues={initialValues}
-      //   validationSchema={validationSchema}
-      onSubmit={handleSubmit}
-    >
+    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {({ values }) => (
         <Form className={styles.form}>
           <label className={styles.inputLabel}>
@@ -129,13 +141,13 @@ export default function Filters({ filterCampers }) {
             >
               <label
                 className={`${styles.radioLabel} ${
-                  values.type === "van" ? styles.active : ""
+                  values.form === "van" ? styles.active : ""
                 }`}
               >
                 <Field
                   className={`${styles.hidden}`}
                   type="radio"
-                  name="type"
+                  name="form"
                   value="van"
                 />
                 <VanIcon
@@ -147,27 +159,27 @@ export default function Filters({ filterCampers }) {
               </label>
               <label
                 className={`${styles.radioLabel} ${
-                  values.type === "fully integrated" ? styles.active : ""
+                  values.form === "fullyIntegrated" ? styles.active : ""
                 }`}
               >
                 <Field
                   className={`${styles.hidden}`}
                   type="radio"
-                  name="type"
-                  value="fully integrated"
+                  name="form"
+                  value="fullyIntegrated"
                 />
                 <FullyIntIcon viewBox="0 0 40 28" className={styles.typeIcon} />
                 Fully integrated
               </label>
               <label
                 className={`${styles.radioLabel} ${
-                  values.type === "alcove" ? styles.active : ""
+                  values.form === "alcove" ? styles.active : ""
                 }`}
               >
                 <Field
                   className={`${styles.hidden}`}
                   type="radio"
-                  name="type"
+                  name="form"
                   value="alcove"
                 />
                 <AlcoveIcon viewBox="0 0 40 28" className={styles.typeIcon} />
@@ -205,7 +217,11 @@ export default function Filters({ filterCampers }) {
           <button className={styles.submitBtn} type="submit">
             Search
           </button>
-          <button className={styles.resetBtn} type="reset">
+          <button
+            className={styles.resetBtn}
+            type="reset"
+            onClick={filterReset}
+          >
             Reset
           </button>
         </Form>

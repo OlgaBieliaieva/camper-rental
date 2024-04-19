@@ -85,7 +85,7 @@ export default function Header({ cls }) {
                 </button>
               </li>
               <li className={styles.menuItem}>
-                <Link to="/catalog">
+                <Link to={`/catalog`}>
                   <FormatListNumberedIcon className={styles.headerIcon} />
                 </Link>
               </li>

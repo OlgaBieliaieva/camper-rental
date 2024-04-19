@@ -6,7 +6,7 @@ axios.defaults.baseURL = "https://6618f1089a41b1b3dfbe61ce.mockapi.io/api/";
 
 const REQUEST_OPTIONS = {
   page: 1,
-  limit: 4,  
+  limit: 4,
 };
 
 export const signup = createAsyncThunk(
@@ -108,31 +108,34 @@ export const fetchUsers = createAsyncThunk(
 
 export const fetchAllCampers = createAsyncThunk(
   "appState/fetchAllCampers",
-  async (filter, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
       const response = await axios.get(`/advert`);
-      if(!filter){
-        return response.data;
-      } else {
-        
-      }
-      
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  }
-);
-
-export const fetchCampers = createAsyncThunk(
-  "appState/fetchCampers",
-  async (page, thunkAPI) => {
-    REQUEST_OPTIONS.page = page;
-    const options = new URLSearchParams(REQUEST_OPTIONS);
-    try {
-      const response = await axios.get(`/advert?${options}`);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
+
+// export const fetchCampers = createAsyncThunk(
+//   "appState/fetchCampers",
+//   async (filter, thunkAPI) => {
+//     console.log(filter);
+//     for (const option in filter) {
+//       if (option.length !== 0) {
+//         REQUEST_OPTIONS[option] = filter[option];
+//       }
+//     }
+    // console.log(filter);
+    // REQUEST_OPTIONS.page = filter.page;
+//     const options = new URLSearchParams(REQUEST_OPTIONS);
+//     console.log(options);
+//     try {
+//       const response = await axios.get(`/advert?${options}`);
+//       return response.data;
+//     } catch (e) {
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   }
+// );
