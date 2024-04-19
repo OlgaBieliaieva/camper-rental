@@ -1,29 +1,29 @@
 .pagWrapper {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
 }
 .pagList {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .pageBtn {
-    padding: 6px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
+  padding: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
 }
 .pageBtn:hover {
-    color: #ffffff;
-    background-color: #FFC531;
-    border-radius: 4px;
+  color: #ffffff;
+  background-color: #ffc531;
+  border-radius: 4px;
 }
 .pageBtn.active {
-    color: #ffffff;
-    background-color: #FFC531;
-    border-radius: 4px;
+  color: #ffffff;
+  background-color: #ffc531;
+  border-radius: 4px;
 }

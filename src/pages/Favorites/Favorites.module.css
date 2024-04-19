@@ -6,56 +6,27 @@
   width: 100%;
 }
 .contentWrapper {
-  width: 100%;
+  width: 1280px;
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding-bottom: 32px;
-  padding-left: 16px;
-  padding-right: 16px;
+  gap: 24px;
+  padding-bottom: 48px;
+  padding-left: 24px;
+  padding-right: 24px;
   margin: 0 auto;
-
-  @media screen and (min-width: 768px) {
-    width: 768px;
-    padding-bottom: 48px;
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    width: 1280px;
-    flex-direction: row;
-    gap: 24px;
-  }
 }
 .sideBar {
-  width: 100%;
+  width: calc(100% - 890px - 24px);
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding-top: 32px;
-
-  @media screen and (min-width: 768px) {
-    padding-top: 48px;
-  }
-  @media screen and (min-width: 1280px) {
-    width: calc(100% - 890px - 24px);
-  }
+  padding-top: 48px;
 }
 .contentSpace {
-  width: 100%;
+  width: 890px;
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding-top: 32px;
-
-  @media screen and (min-width: 768px) {
-    width: 720px;
-    padding-top: 48px;
-  }
-  @media screen and (min-width: 1280px) {
-    width: 890px;
-  }
+  padding-top: 48px;
 }
 .content {
   width: 100%;
