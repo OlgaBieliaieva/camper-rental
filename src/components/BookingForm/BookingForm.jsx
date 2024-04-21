@@ -1,16 +1,15 @@
-import { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import CalendarIcon from "../Icons/CalendarIcon";
 import styles from "./BookingForm.module.css";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Введіть ім'я"),
   email: Yup.string().email().required("Введіть адресу електронної пошти"),
-  //   bookingDate: Yup.string().min(6).max(10).required("Введіть пароль"),
+  startDate: Yup.date().required("Оберіть дату"),
+  endDate: Yup.date().required("Оберіть дату"),
+  comment: Yup.string(),
 });
 
 const initialValues = {
@@ -18,11 +17,13 @@ const initialValues = {
   email: "",
   startDate: "",
   endDate: "",
+  comment: "",
 };
 
 export default function BookingForm() {
   function handleSubmit(values, { resetForm }) {
     console.log(values);
+    resetForm();
   }
   return (
     <section className={styles.sectionContainer}>
@@ -45,7 +46,7 @@ export default function BookingForm() {
                 name="name"
                 placeholder="Ім'я"
               />
-              <ErrorMessage name="email">
+              <ErrorMessage name="name">
                 {(message) => <p className={styles.errorText}>{message}</p>}
               </ErrorMessage>
             </label>
@@ -64,8 +65,6 @@ export default function BookingForm() {
               <Field name="startDate" className={styles.formInput}>
                 {({ field, form }) => (
                   <DatePicker
-                    className="datePickerInput"
-                    wrapperClassName="datePicker"
                     {...field}
                     id="startDate"
                     placeholderText="Start date"
@@ -73,12 +72,12 @@ export default function BookingForm() {
                     minDate={Date.now()}
                     selected={field.value}
                     onChange={(date) => form.setFieldValue(field.name, date)}
+                    style={{ width: "100%" }}
                   />
                 )}
               </Field>
 
-              {/* <CalendarIcon className={styles.inputIcon} /> */}
-              <ErrorMessage name="password">
+              <ErrorMessage name="startDate">
                 {(message) => <p className={styles.errorText}>{message}</p>}
               </ErrorMessage>
             </label>
@@ -86,8 +85,6 @@ export default function BookingForm() {
               <Field name="endDate" className={styles.formInput}>
                 {({ field, form }) => (
                   <DatePicker
-                    className="datePickerInput"
-                    wrapperClassName="datePicker"
                     {...field}
                     id="endDate"
                     placeholderText="End date"
@@ -99,8 +96,7 @@ export default function BookingForm() {
                 )}
               </Field>
 
-              {/* <CalendarIcon className={styles.inputIcon} /> */}
-              <ErrorMessage name="password">
+              <ErrorMessage name="endDate">
                 {(message) => <p className={styles.errorText}>{message}</p>}
               </ErrorMessage>
             </label>
@@ -112,7 +108,7 @@ export default function BookingForm() {
                 name="comment"
                 placeholder="Comment"
               />
-              <ErrorMessage name="email">
+              <ErrorMessage name="comment">
                 {(message) => <p className={styles.errorText}>{message}</p>}
               </ErrorMessage>
             </label>
