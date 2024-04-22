@@ -102,14 +102,6 @@ const appSlice = createSlice({
         state.campers = [...action.payload];
       })
       .addCase(fetchAllCampers.rejected, handleRejected);
-
-    // .addCase(fetchCampers.pending, handlePending)
-    // .addCase(fetchCampers.fulfilled, (state, action) => {
-    //   state.isLoading = false;
-    //   state.error = null;
-    //   state.campers = [...action.payload];
-    // })
-    // .addCase(fetchCampers.rejected, handleRejected)
   },
 });
 

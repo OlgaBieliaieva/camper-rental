@@ -8,7 +8,7 @@ export default function Loader() {
         height="200"
         width="200"
         strokeColor="grey"
-        ariaLabel="otating-lines-loading"
+        ariaLabel="rotating-lines-loading"
         wrapperStyle={{}}
         wrapperClass=""
         visible={true}

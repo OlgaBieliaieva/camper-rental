@@ -31,29 +31,3 @@ export const selectFilteredCampers = createSelector(
       );
   }
 );
-
-// function getCampersByParams() {
-//   if (filter[option].length > 0 && filter[option] !== "page") {
-//     switch (option) {
-//       case "location":
-//         return camper.location.toLowerCase().trim().includes(filter.location);
-
-//       case "transmission":
-//         return camper.transmission === filter.transmission;
-
-//       case "form":
-//         return camper.form === filter.form;
-
-//       case "equipment":
-//         return filter.equipment.map((item) => camper[item] > 0).length ===
-//           filter.equipment.length
-//           ? true
-//           : false;
-
-//       default:
-//         return;
-//     }
-//   } else {
-//     return true;
-//   }
-// }

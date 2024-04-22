@@ -68,8 +68,7 @@ export default function Filters({ createSearchParams, onPageChange }) {
           : (params.equipment = [...values.equipment]);
       }
     }
-    console.log(values);
-    console.log(params);
+
     createSearchParams({ ...params });
     dispatch(filter({ ...params }));
     onPageChange(1);

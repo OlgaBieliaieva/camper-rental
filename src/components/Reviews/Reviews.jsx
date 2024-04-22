@@ -2,14 +2,14 @@ import BookingForm from "../BookingForm/BookingForm";
 import StarIcon from "../Icons/StarIcon";
 import styles from "./Reviews.module.css";
 
-export default function Reviews({ reviews }) {
+export default function Reviews({ product, onClose }) {
   const stars = [1, 2, 3, 4, 5];
 
   return (
     <div className={styles.reviewsContainer}>
       <div className={styles.reviewsWrapper}>
         <ul className={styles.reviewsList}>
-          {reviews.map((review, index) => (
+          {product?.reviews.map((review, index) => (
             <li key={index} className={styles.listItem}>
               <div className={styles.titleWrapper}>
                 <div className={styles.avatar}>
@@ -38,7 +38,7 @@ export default function Reviews({ reviews }) {
           ))}
         </ul>
       </div>
-      <BookingForm/>
+      <BookingForm product={product} onClose={onClose}/>
     </div>
   );
 }

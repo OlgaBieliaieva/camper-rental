@@ -20,27 +20,27 @@ import styles from "./ProductCard.module.css";
 
 const details = [
   {
-    name: "adults",    
+    name: "adults",
     icon: <UsersIcon className={styles.detailsIcon} />,
   },
   {
-    name: "transmission",    
+    name: "transmission",
     icon: <TransmissionIcon className={styles.detailsIcon} />,
   },
   {
-    name: "engine",   
+    name: "engine",
     icon: <EngineIcon className={styles.detailsIcon} />,
   },
   {
-    name: "kitchen",   
+    name: "kitchen",
     icon: <KitchenIcon className={styles.detailsIcon} />,
   },
   {
-    name: "beds",   
+    name: "beds",
     icon: <BedIcon className={styles.detailsIcon} />,
   },
   {
-    name: "airConditioner",   
+    name: "airConditioner",
     icon: <ACIcon className={styles.detailsIcon} />,
   },
 ];

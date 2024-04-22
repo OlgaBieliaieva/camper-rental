@@ -31,15 +31,14 @@ const initialValues = {
 export default function Signin({ onClose }) {
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, { resetForm }) => {    
-
+  const handleSubmit = (values, { resetForm }) => {
     dispatch(
       signin({
         ...values,
       })
     );
     resetForm();
-    onClose()
+    onClose();
   };
 
   return (

@@ -33,18 +33,16 @@ const initialValues = {
 export default function Signup({ changeItem }) {
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.currentTarget;
+  const handleSubmit = (values, { resetForm }) => {
     const newUser = {
-      name: form.elements.name.value,
-      email: form.elements.email.value,
-      password: form.elements.password.value,
+      name: values.name,
+      email: values.email,
+      password: values.password,
       favorites: [],
     };
 
     dispatch(signup({ ...newUser }));
-    form.reset();
+    resetForm();
     changeItem(0);
   };
 

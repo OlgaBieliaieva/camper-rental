@@ -23,8 +23,8 @@ export default function ProductDetails({
   showDetailsHandler,
 }) {
   const { currentItem, changeItem } = useTabs(0, content);
-  content[0].component = <Features product={product}/>;
-  content[1].component = <Reviews reviews={product.reviews} />;
+  content[0].component = <Features product={product} onClose={onClose}/>;
+  content[1].component = <Reviews product={product} onClose={onClose}/>;
 
   function closeHandler() {
     showDetailsHandler(false);
@@ -70,19 +70,19 @@ export default function ProductDetails({
         </ul>
         <p className={styles.description}>{product.description}</p>
         <ul className={styles.tabList}>
-        {content.map((section) => (
-          <button
-            className={`${styles.tabBtn} ${
-              currentItem.index === section.index ? styles.activeTab : ""
-            } `}
-            key={section.index}
-            onClick={() => changeItem(section.index)}
-          >
-            {section.tab}
-          </button>
-        ))}
-      </ul>
-      <div className={styles.tabContent}>{currentItem.component}</div>
+          {content.map((section) => (
+            <button
+              className={`${styles.tabBtn} ${
+                currentItem.index === section.index ? styles.activeTab : ""
+              } `}
+              key={section.index}
+              onClick={() => changeItem(section.index)}
+            >
+              {section.tab}
+            </button>
+          ))}
+        </ul>
+        <div className={styles.tabContent}>{currentItem.component}</div>
       </div>
     </div>
   );

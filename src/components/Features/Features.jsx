@@ -63,7 +63,7 @@ const details = [
 ];
 const properties = ["form", "length", "width", "height", "tank", "consumption"];
 
-export default function Features({ product }) {
+export default function Features({ product, onClose }) {
   return (
     <div className={styles.featuresContainer}>
       <div className={styles.featuresWrapper}>
@@ -154,7 +154,7 @@ export default function Features({ product }) {
         </ul>
         </div>
       </div>
-      <BookingForm/>
+      <BookingForm product={product} onClose={onClose}/>
     </div>
   );
 }
